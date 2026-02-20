@@ -145,73 +145,87 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* HERO */}
-      <section className="py-20 px-4 text-center bg-white">
+      {/* Navigation */}
+      <nav className="py-6 border-b border-surface bg-bg">
+        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+          <div className="text-2xl font-bold text-accent-teal" style={{ textShadow: '0 0 20px rgba(0, 209, 199, 0.3)' }}>
+            PrintScore™
+          </div>
+          <a href="#upload" className="px-5 py-2.5 bg-accent-teal text-bg font-semibold rounded-lg hover:bg-accent-teal/80 transition-all" style={{ boxShadow: '0 0 15px rgba(0, 209, 199, 0.3)' }}>
+            Check Your Score
+          </a>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="py-24 md:py-32 px-6 text-center bg-bg">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-charcoal mb-6 leading-tight">
-            made it with ai?<br />
-            <span className="text-aqua">let&apos;s make sure it prints right.</span>
+          <h1 className="text-5xl md:text-7xl font-bold text-text leading-tight mb-6" style={{ letterSpacing: '-2px', textShadow: '0 0 40px rgba(0, 209, 199, 0.2)' }}>
+            Made it with AI?<br />
+            <span className="text-accent-teal">Let&apos;s make sure it prints right.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-charcoal/70 mb-8">
-            upload your design ~ get an instant print score + a shareable pdf report.
+          <p className="text-xl text-text-muted max-w-2xl mx-auto mb-10">
+            Upload your design. Get an instant print compatibility score. Download a shareable PDF report.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#upload"
-              className="bg-aqua hover:bg-aqua/90 text-charcoal font-bold py-4 px-8 rounded-xl text-lg transition-all hover:-translate-y-1 hover:shadow-glow-aqua"
+              className="px-8 py-4 border-2 border-accent-teal text-accent-teal font-semibold rounded-lg hover:bg-accent-teal/10 transition-all"
+              style={{ boxShadow: '0 0 20px rgba(0, 209, 199, 0.2)' }}
             >
-              check my printscore
+              Check My PrintScore
             </a>
             <a
               href="#how-it-works"
-              className="bg-white border-2 border-charcoal/20 hover:border-charcoal text-charcoal font-bold py-4 px-8 rounded-xl text-lg transition-all hover:-translate-y-1"
+              className="px-8 py-4 border-2 border-surface text-text-muted font-semibold rounded-lg hover:border-accent-cyan hover:text-accent-cyan transition-all"
             >
-              how it works
+              How It Works
             </a>
           </div>
         </div>
       </section>
 
-      {/* 3-STEP GRAPHIC */}
-      <section className="py-16 px-4 bg-bg-light">
-        <div className="max-w-6xl mx-auto">
+      {/* 3-Step Graphic */}
+      <section className="py-16 px-6 bg-surface">
+        <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-2xl p-8 shadow-soft hover:-translate-y-1 transition-transform text-center">
-              <div className="w-16 h-16 bg-aqua/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-3xl">📤</span>
+            <div className="bg-bg p-8 rounded-2xl border border-surface hover:border-accent-teal transition-all group">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 border-2 border-accent-teal text-accent-teal text-2xl font-bold" style={{ boxShadow: '0 0 20px rgba(0, 209, 199, 0.2)' }}>
+                1
               </div>
-              <h3 className="font-bold text-charcoal text-xl mb-2">Upload</h3>
-              <p className="text-charcoal/60">drop your ai-generated design file</p>
+              <h3 className="font-bold text-text text-xl mb-2">Upload</h3>
+              <p className="text-text-muted">Drop your AI-generated design file. PNG, JPG, or PDF.</p>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-soft hover:-translate-y-1 transition-transform text-center">
-              <div className="w-16 h-16 bg-pink/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-3xl">🔍</span>
+            <div className="bg-bg p-8 rounded-2xl border border-surface hover:border-accent-cyan transition-all group">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 border-2 border-accent-cyan text-accent-cyan text-2xl font-bold" style={{ boxShadow: '0 0 20px rgba(45, 226, 230, 0.2)' }}>
+                2
               </div>
-              <h3 className="font-bold text-charcoal text-xl mb-2">Scan</h3>
-              <p className="text-charcoal/60">instant print compatibility analysis</p>
+              <h3 className="font-bold text-text text-xl mb-2">Scan</h3>
+              <p className="text-text-muted">Instant analysis of resolution, color mode, layout, and format.</p>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-soft hover:-translate-y-1 transition-transform text-center">
-              <div className="w-16 h-16 bg-yellow/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-3xl">🖨️</span>
+            <div className="bg-bg p-8 rounded-2xl border border-surface hover:border-accent-lime transition-all group">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 border-2 border-accent-lime text-accent-lime text-2xl font-bold" style={{ boxShadow: '0 0 20px rgba(199, 244, 100, 0.2)' }}>
+                3
               </div>
-              <h3 className="font-bold text-charcoal text-xl mb-2">Print Confidently</h3>
-              <p className="text-charcoal/60">download your detailed report</p>
+              <h3 className="font-bold text-text text-xl mb-2">Print Confidently</h3>
+              <p className="text-text-muted">Download your detailed report. Fix issues if needed.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* UPLOAD TOOL */}
-      <section id="upload" className="py-16 px-4 bg-white">
+      {/* Upload Tool */}
+      <section id="upload" className="py-20 px-6 bg-bg">
         <div className="max-w-3xl mx-auto">
           <div
             className={`
-              relative p-10 rounded-2xl border-2 border-dashed transition-all cursor-pointer bg-bg-light
-              ${isDragging ? 'border-pink shadow-glow-pink scale-[1.02]' : 'border-aqua'}
-              ${isAnalyzing ? 'opacity-50 cursor-not-allowed' : 'hover:border-pink hover:shadow-glow-pink'}
+              relative p-10 rounded-2xl border-2 border-dashed transition-all cursor-pointer bg-surface
+              ${isDragging ? 'border-accent-lime' : 'border-accent-teal/50'}
+              ${isAnalyzing ? 'opacity-50 cursor-not-allowed' : 'hover:border-accent-teal'}
             `}
+            style={isDragging ? { boxShadow: '0 0 30px rgba(199, 244, 100, 0.3)' } : {}}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
@@ -228,67 +242,68 @@ export default function Home() {
 
             {!file ? (
               <div className="text-center">
-                <div className="w-20 h-20 bg-aqua/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl">📤</span>
+                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 border-2 border-accent-teal text-accent-teal" style={{ boxShadow: '0 0 20px rgba(0, 209, 199, 0.2)' }}>
+                  <span className="text-3xl">↑</span>
                 </div>
-                <h3 className="text-2xl font-bold text-charcoal mb-3">
-                  drop your design here
+                <h3 className="text-2xl font-bold text-text mb-3">
+                  Drop your design here
                 </h3>
-                <p className="text-charcoal/60 mb-6">or click to browse</p>
+                <p className="text-text-muted mb-6">or click to browse</p>
                 <div className="flex justify-center gap-3 text-sm font-medium mb-4">
-                  <span className="bg-white px-4 py-2 rounded-lg border border-charcoal/20">PNG</span>
-                  <span className="bg-white px-4 py-2 rounded-lg border border-charcoal/20">JPG</span>
-                  <span className="bg-white px-4 py-2 rounded-lg border border-charcoal/20">PDF</span>
+                  <span className="bg-bg px-4 py-2 rounded-lg border border-surface text-text-muted">PNG</span>
+                  <span className="bg-bg px-4 py-2 rounded-lg border border-surface text-text-muted">JPG</span>
+                  <span className="bg-bg px-4 py-2 rounded-lg border border-surface text-text-muted">PDF</span>
                 </div>
-                <p className="text-charcoal/50 text-sm">max file size: 10MB</p>
+                <p className="text-text-muted/60 text-sm">Max file size: 10MB</p>
               </div>
             ) : (
               <div className="text-center">
                 {preview && (
-                  <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded-xl mx-auto mb-4" />
+                  <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded-xl mx-auto mb-4 border border-surface" />
                 )}
                 {!preview && file.type === 'application/pdf' && (
-                  <div className="w-32 h-32 bg-charcoal/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-32 h-32 rounded-xl flex items-center justify-center mx-auto mb-4 border border-surface bg-bg">
                     <span className="text-4xl">📄</span>
                   </div>
                 )}
-                <p className="font-medium text-charcoal mb-1">{file.name}</p>
-                <p className="text-charcoal/50 text-sm mb-6">{formatSize(file.size)}</p>
+                <p className="font-medium text-text mb-1">{file.name}</p>
+                <p className="text-text-muted text-sm mb-6">{formatSize(file.size)}</p>
                 <div className="flex justify-center gap-3">
                   <button
                     onClick={(e) => { e.stopPropagation(); setFile(null); setPreview(null); }}
-                    className="bg-charcoal/10 hover:bg-charcoal/20 text-charcoal font-medium py-2 px-6 rounded-lg transition-all"
+                    className="px-6 py-2.5 bg-surface hover:bg-surface/80 text-text-muted font-medium rounded-lg border border-surface transition-all"
                   >
-                    remove
+                    Remove
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); analyzeFile(); }}
                     disabled={isAnalyzing}
-                    className="bg-aqua hover:bg-aqua/90 text-charcoal font-bold py-2 px-6 rounded-lg transition-all"
+                    className="px-6 py-2.5 bg-accent-teal hover:bg-accent-teal/80 text-bg font-bold rounded-lg transition-all"
+                    style={{ boxShadow: '0 0 15px rgba(0, 209, 199, 0.3)' }}
                   >
-                    {isAnalyzing ? 'scanning...' : 'scan file'}
+                    {isAnalyzing ? 'Scanning...' : 'Scan File'}
                   </button>
                 </div>
               </div>
             )}
           </div>
 
-          <div className="text-center mt-6 text-charcoal/60 text-sm">
-            <p>free instant print score ~ no signup required.</p>
-            <p className="mt-1">files are analyzed instantly and automatically deleted.</p>
+          <div className="text-center mt-6 text-text-muted text-sm">
+            <p>Free instant print score — no signup required.</p>
+            <p className="mt-1 text-text-muted/60">Files are analyzed instantly and automatically deleted.</p>
           </div>
         </div>
       </section>
 
-      {/* RESULTS */}
+      {/* Results */}
       {result && (
-        <section ref={resultsRef} className="py-16 px-4 bg-bg-light">
+        <section ref={resultsRef} className="py-20 px-6 bg-surface">
           <div className="max-w-4xl mx-auto">
             {/* Score Gauge */}
             <div className="flex justify-center mb-8">
               <div className="relative w-56 h-56">
                 <svg className="w-full h-full transform -rotate-90" viewBox="0 0 200 200">
-                  <circle cx="100" cy="100" r="80" stroke="#E5E5E5" strokeWidth="16" fill="none" />
+                  <circle cx="100" cy="100" r="80" stroke="#1A1E24" strokeWidth="16" fill="none" />
                   <circle
                     cx="100" cy="100" r="80"
                     stroke={result.tier_color}
@@ -298,18 +313,18 @@ export default function Home() {
                     strokeLinecap="round"
                     style={{
                       transition: 'stroke-dashoffset 1s ease-out',
-                      filter: `drop-shadow(0 0 8px ${result.tier_color}80)`,
+                      filter: `drop-shadow(0 0 12px ${result.tier_color}60)`,
                     }}
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center flex-col">
                   <span
                     className="text-6xl font-black"
-                    style={{ color: result.tier_color }}
+                    style={{ color: result.tier_color, textShadow: `0 0 20px ${result.tier_color}40` }}
                   >
                     {result.total_score}
                   </span>
-                  <span className="text-base font-medium text-charcoal/60">/ 100</span>
+                  <span className="text-base font-medium text-text-muted">/ 100</span>
                 </div>
               </div>
             </div>
@@ -317,177 +332,210 @@ export default function Home() {
             {/* Tier Badge */}
             <div className="text-center mb-8">
               <span
-                className="inline-block px-8 py-3 rounded-full font-bold text-lg text-charcoal"
-                style={{ backgroundColor: result.tier_color }}
+                className="inline-block px-8 py-3 rounded-full font-bold text-lg text-bg"
+                style={{ backgroundColor: result.tier_color, boxShadow: `0 0 20px ${result.tier_color}40` }}
               >
                 {result.tier}
               </span>
             </div>
 
             {/* Summary */}
-            <p className="text-center text-charcoal/80 text-xl mb-12 max-w-2xl mx-auto">
+            <p className="text-center text-text-muted text-xl mb-12 max-w-2xl mx-auto">
               {result.summary}
             </p>
 
             {/* Result Cards */}
             <div className="grid md:grid-cols-2 gap-4 mb-12">
-              <div className="bg-white rounded-xl p-6 shadow-soft border-l-4 border-aqua">
-                <h4 className="font-bold text-charcoal text-lg mb-2 flex items-center gap-2">
-                  <span>📏</span> Resolution
+              <div className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-teal transition-all" style={{ borderLeftWidth: '4px', borderLeftColor: '#00D1C7' }}>
+                <h4 className="font-bold text-text text-lg mb-2 flex items-center gap-2">
+                  <span className="text-accent-teal">📏</span> Resolution
                 </h4>
-                <p className="text-charcoal/70">{result.issues.resolution}</p>
+                <p className="text-text-muted">{result.issues.resolution}</p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-soft border-l-4 border-pink">
-                <h4 className="font-bold text-charcoal text-lg mb-2 flex items-center gap-2">
-                  <span>🎨</span> Color
+              <div className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-pink transition-all" style={{ borderLeftWidth: '4px', borderLeftColor: '#FF008C' }}>
+                <h4 className="font-bold text-text text-lg mb-2 flex items-center gap-2">
+                  <span className="text-accent-pink">🎨</span> Color
                 </h4>
-                <p className="text-charcoal/70">{result.issues.color}</p>
+                <p className="text-text-muted">{result.issues.color}</p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-soft border-l-4 border-yellow">
-                <h4 className="font-bold text-charcoal text-lg mb-2 flex items-center gap-2">
-                  <span>✂️</span> Layout
+              <div className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-amber transition-all" style={{ borderLeftWidth: '4px', borderLeftColor: '#F5A623' }}>
+                <h4 className="font-bold text-text text-lg mb-2 flex items-center gap-2">
+                  <span className="text-accent-amber">✂️</span> Layout
                 </h4>
-                <p className="text-charcoal/70">{result.issues.layout}</p>
+                <p className="text-text-muted">{result.issues.layout}</p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-soft border-l-4 border-charcoal/40">
-                <h4 className="font-bold text-charcoal text-lg mb-2 flex items-center gap-2">
+              <div className="bg-bg rounded-xl p-6 border border-surface hover:border-text-muted transition-all" style={{ borderLeftWidth: '4px', borderLeftColor: '#6B7280' }}>
+                <h4 className="font-bold text-text text-lg mb-2 flex items-center gap-2">
                   <span>📦</span> Format
                 </h4>
-                <p className="text-charcoal/70">{result.issues.format}</p>
+                <p className="text-text-muted">{result.issues.format}</p>
               </div>
+            </div>
+
+            {/* Print Size Safe Range */}
+            <div className="text-center mb-10 p-6 bg-bg rounded-xl border border-surface max-w-xl mx-auto">
+              <p className="text-text-muted">
+                <span className="text-accent-lime font-semibold">Print Size Safe Range:</span>{' '}
+                {result.max_print_width_in?.toFixed(1)} × {result.max_print_height_in?.toFixed(1)} inches at 300 DPI
+              </p>
             </div>
 
             {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={downloadPDF}
-                className="bg-aqua hover:bg-aqua/90 text-charcoal font-bold py-4 px-8 rounded-xl text-lg transition-all hover:-translate-y-1 hover:shadow-glow-aqua"
+                className="px-8 py-4 bg-accent-teal hover:bg-accent-teal/80 text-bg font-bold rounded-lg transition-all"
+                style={{ boxShadow: '0 0 20px rgba(0, 209, 199, 0.3)' }}
               >
-                download pdf report
+                Download PDF Report
               </button>
-              <button
-                className="bg-pink hover:bg-pink/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all hover:-translate-y-1"
+              <a
+                href="https://shopnasgfx.com/fix-my-file"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-accent-amber hover:bg-accent-amber/80 text-bg font-bold rounded-lg transition-all text-center"
+                style={{ boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)' }}
               >
-                fix my file ~ $15
-              </button>
+                Fix My File — $15
+              </a>
             </div>
           </div>
         </section>
       )}
 
-      {/* HOW IT WORKS */}
-      <section id="how-it-works" className="py-16 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-charcoal text-center mb-12">how it works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      {/* How It Works */}
+      <section id="how-it-works" className="py-20 px-6 bg-bg">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-text text-center mb-12">How It Works</h2>
+          <div className="flex flex-col gap-8">
             <div className="text-center">
-              <div className="w-12 h-12 bg-aqua/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-aqua">1</span>
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 border-2 border-accent-teal text-accent-teal text-xl font-bold" style={{ boxShadow: '0 0 20px rgba(0, 209, 199, 0.2)' }}>
+                1
               </div>
-              <h4 className="font-bold text-charcoal mb-2">Upload</h4>
-              <p className="text-charcoal/60 text-sm">drag and drop your ai-generated design file</p>
+              <h4 className="font-bold text-text text-lg mb-2">Upload</h4>
+              <p className="text-text-muted">Drag and drop your AI-generated design file.</p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-pink/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-pink">2</span>
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 border-2 border-accent-cyan text-accent-cyan text-xl font-bold" style={{ boxShadow: '0 0 20px rgba(45, 226, 230, 0.2)' }}>
+                2
               </div>
-              <h4 className="font-bold text-charcoal mb-2">Scan</h4>
-              <p className="text-charcoal/60 text-sm">instant analysis of resolution, color, layout, format</p>
+              <h4 className="font-bold text-text text-lg mb-2">Scan</h4>
+              <p className="text-text-muted">Instant analysis of resolution, color mode, layout, and format.</p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-yellow/40 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-charcoal">3</span>
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 border-2 border-accent-lime text-accent-lime text-xl font-bold" style={{ boxShadow: '0 0 20px rgba(199, 244, 100, 0.2)' }}>
+                3
               </div>
-              <h4 className="font-bold text-charcoal mb-2">Download Report</h4>
-              <p className="text-charcoal/60 text-sm">get your print score + pdf (and optionally fix your file)</p>
+              <h4 className="font-bold text-text text-lg mb-2">Download Report</h4>
+              <p className="text-text-muted">Get your print score + PDF. Optionally fix your file.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-16 px-4 bg-bg-light">
+      <section className="py-20 px-6 bg-surface">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-charcoal text-center mb-12">frequently asked questions</h2>
-          <div className="space-y-4">
-            <details className="bg-white rounded-xl p-6 shadow-soft group">
-              <summary className="font-bold text-charcoal cursor-pointer list-none flex justify-between items-center">
-                why do printers reject ai-generated files?
-                <span className="text-aqua group-open:rotate-180 transition-transform">▼</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-text text-center mb-12">Frequently Asked Questions</h2>
+          <div className="flex flex-col gap-4">
+            <details className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-teal transition-all group">
+              <summary className="font-bold text-text cursor-pointer list-none flex justify-between items-center">
+                Why do printers reject AI-generated files?
+                <span className="text-accent-teal group-open:rotate-180 transition-transform text-xl">+</span>
               </summary>
-              <p className="mt-4 text-charcoal/70">
-                ai-generated images often have low resolution, rgb color mode (printers need cmyk), or missing bleed areas. printscore catches these issues before you print.
+              <p className="mt-4 text-text-muted leading-relaxed">
+                AI-generated images often have low resolution, RGB color mode (printers need CMYK), or missing bleed areas. PrintScore catches these issues before you print.
               </p>
             </details>
 
-            <details className="bg-white rounded-xl p-6 shadow-soft group">
-              <summary className="font-bold text-charcoal cursor-pointer list-none flex justify-between items-center">
-                what is dpi?
-                <span className="text-aqua group-open:rotate-180 transition-transform">▼</span>
+            <details className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-teal transition-all group">
+              <summary className="font-bold text-text cursor-pointer list-none flex justify-between items-center">
+                What is DPI?
+                <span className="text-accent-teal group-open:rotate-180 transition-transform text-xl">+</span>
               </summary>
-              <p className="mt-4 text-charcoal/70">
-                dpi stands for &quot;dots per inch&quot; and measures print resolution. 300 dpi is standard for high-quality prints. anything lower may look pixelated or blurry.
+              <p className="mt-4 text-text-muted leading-relaxed">
+                DPI stands for &quot;dots per inch&quot; and measures print resolution. 300 DPI is standard for high-quality prints. Anything lower may look pixelated or blurry.
               </p>
             </details>
 
-            <details className="bg-white rounded-xl p-6 shadow-soft group">
-              <summary className="font-bold text-charcoal cursor-pointer list-none flex justify-between items-center">
-                what is cmyk?
-                <span className="text-aqua group-open:rotate-180 transition-transform">▼</span>
+            <details className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-teal transition-all group">
+              <summary className="font-bold text-text cursor-pointer list-none flex justify-between items-center">
+                What is CMYK?
+                <span className="text-accent-teal group-open:rotate-180 transition-transform text-xl">+</span>
               </summary>
-              <p className="mt-4 text-charcoal/70">
-                cmyk (cyan, magenta, yellow, black) is the color mode used for printing. ai images are typically rgb, which can cause color shifts when printed.
+              <p className="mt-4 text-text-muted leading-relaxed">
+                CMYK (cyan, magenta, yellow, black) is the color mode used for printing. AI images are typically RGB, which can cause color shifts when printed.
               </p>
             </details>
 
-            <details className="bg-white rounded-xl p-6 shadow-soft group">
-              <summary className="font-bold text-charcoal cursor-pointer list-none flex justify-between items-center">
-                do you store my files?
-                <span className="text-aqua group-open:rotate-180 transition-transform">▼</span>
+            <details className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-teal transition-all group">
+              <summary className="font-bold text-text cursor-pointer list-none flex justify-between items-center">
+                Do you store my files?
+                <span className="text-accent-teal group-open:rotate-180 transition-transform text-xl">+</span>
               </summary>
-              <p className="mt-4 text-charcoal/70">
-                no. files are analyzed instantly and automatically deleted immediately after processing. we never store or log your uploads.
+              <p className="mt-4 text-text-muted leading-relaxed">
+                No. Files are analyzed instantly and automatically deleted immediately after processing. We never store or log your uploads.
               </p>
             </details>
 
-            <details className="bg-white rounded-xl p-6 shadow-soft group">
-              <summary className="font-bold text-charcoal cursor-pointer list-none flex justify-between items-center">
-                what file types are supported?
-                <span className="text-aqua group-open:rotate-180 transition-transform">▼</span>
+            <details className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-teal transition-all group">
+              <summary className="font-bold text-text cursor-pointer list-none flex justify-between items-center">
+                What file types are supported?
+                <span className="text-accent-teal group-open:rotate-180 transition-transform text-xl">+</span>
               </summary>
-              <p className="mt-4 text-charcoal/70">
-                png, jpg/jpeg, and pdf files up to 10mb are supported. for best results, use high-resolution images (at least 2400x3000 pixels for 8x10 prints).
+              <p className="mt-4 text-text-muted leading-relaxed">
+                PNG, JPG/JPEG, and PDF files up to 10MB are supported. For best results, use high-resolution images (at least 2400×3000 pixels for 8×10 prints).
               </p>
             </details>
 
-            <details className="bg-white rounded-xl p-6 shadow-soft group">
-              <summary className="font-bold text-charcoal cursor-pointer list-none flex justify-between items-center">
-                how accurate is the score?
-                <span className="text-aqua group-open:rotate-180 transition-transform">▼</span>
+            <details className="bg-bg rounded-xl p-6 border border-surface hover:border-accent-teal transition-all group">
+              <summary className="font-bold text-text cursor-pointer list-none flex justify-between items-center">
+                How accurate is the score?
+                <span className="text-accent-teal group-open:rotate-180 transition-transform text-xl">+</span>
               </summary>
-              <p className="mt-4 text-charcoal/70">
-                the score is guidance based on resolution, color mode, layout, and format. it&apos;s a helpful indicator, but always confirm with your print provider for final specs.
+              <p className="mt-4 text-text-muted leading-relaxed">
+                The score is guidance based on resolution, color mode, layout, and format. It&apos;s a helpful indicator, but always confirm with your print provider for final specs.
               </p>
             </details>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="py-12 px-4 bg-charcoal text-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-            <div className="font-bold text-xl">PrintScore™</div>
-            <div className="flex gap-6 text-sm">
-              <a href="#" className="hover:text-aqua transition-colors">privacy</a>
-              <a href="#" className="hover:text-aqua transition-colors">terms</a>
-            </div>
+      {/* Final CTA */}
+      <section className="py-24 px-6 text-center" style={{ background: 'linear-gradient(180deg, #0F1115 0%, #1A1E24 50%, #0F1115 100%)' }}>
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold text-accent-teal mb-4" style={{ textShadow: '0 0 40px rgba(0, 209, 199, 0.3)' }}>
+            Print With Confidence.
+          </h2>
+          <p className="text-xl text-text-muted mb-10">
+            Know your print score before you send it to the printer.
+          </p>
+          <div className="flex justify-center">
+            <a
+              href="#upload"
+              className="px-8 py-4 border-2 border-accent-teal text-accent-teal font-semibold rounded-lg hover:bg-accent-teal/10 transition-all"
+              style={{ boxShadow: '0 0 20px rgba(0, 209, 199, 0.2)' }}
+            >
+              Check My PrintScore
+            </a>
           </div>
-          <p className="text-center text-white/50 text-sm">
-            files are analyzed and automatically deleted.
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-6 border-t border-surface bg-bg">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="text-xl font-bold text-accent-teal mb-4" style={{ textShadow: '0 0 20px rgba(0, 209, 199, 0.3)' }}>
+            PrintScore™
+          </div>
+          <p className="text-text-muted/60 text-sm mb-6">
+            Files are analyzed and automatically deleted.
+          </p>
+          <p className="text-text-muted/40 text-xs">
+            Powered by <a href="https://innergclaw.github.io/innerg-intelligence-landing/" target="_blank" rel="noopener noreferrer" className="hover:text-accent-teal transition-colors">InnerG Intelligence</a>
           </p>
         </div>
       </footer>

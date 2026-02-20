@@ -106,24 +106,24 @@ export async function POST(request: NextRequest) {
     let summary = '';
 
     if (total_score >= 90) {
-      tier = '🟢 Print-Ready';
-      tier_color = '#14D8D4';
+      tier = 'Print-Ready';
+      tier_color = '#00D1C7'; // accent-teal
       summary = 'Your design is print-ready! Sharp, properly sized, and formatted correctly.';
     } else if (total_score >= 75) {
-      tier = '🟢 Great';
-      tier_color = '#14D8D4';
+      tier = 'Great';
+      tier_color = '#2DE2E6'; // accent-cyan
       summary = 'Your design looks good. Minor optimizations could help perfect it.';
     } else if (total_score >= 60) {
-      tier = '🟡 Needs Optimization';
-      tier_color = '#FFE600';
+      tier = 'Needs Optimization';
+      tier_color = '#F5A623'; // accent-amber
       summary = 'Your design needs some adjustments before printing for best results.';
     } else if (total_score >= 40) {
-      tier = '🟠 High Risk';
-      tier_color = '#FF008C';
+      tier = 'High Risk';
+      tier_color = '#FF008C'; // accent-pink
       summary = 'Your design has significant issues that may cause print problems.';
     } else {
-      tier = '🔴 Print Failure Likely';
-      tier_color = '#1F1F1F';
+      tier = 'Print Failure Likely';
+      tier_color = '#6B7280'; // gray
       summary = 'Your design will likely fail to print properly. Consider recreating at higher quality.';
     }
 

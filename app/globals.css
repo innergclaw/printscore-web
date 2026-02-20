@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -13,6 +15,53 @@ html {
 }
 
 body {
-  font-family: Inter, system-ui, -apple-system, sans-serif;
-  background-color: #F7F7F7;
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  background-color: #0F1115;
+  color: #E8E8E8;
+  line-height: 1.6;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1E24;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00D1C7;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2DE2E6;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(0, 209, 199, 0.3);
+  color: #E8E8E8;
+}
+
+/* Details/Summary styling */
+details summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::after {
+  content: " +";
+  float: right;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+details[open] summary::after {
+  content: " −";
 }
