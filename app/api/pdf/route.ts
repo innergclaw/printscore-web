@@ -24,140 +24,161 @@ export async function POST(request: NextRequest) {
     const chunks: Buffer[] = [];
     doc.on('data', (chunk) => chunks.push(chunk));
 
-    // Colors (OwnYourWeb dark theme)
-    const bg = '#0F1115';
-    const surface = '#1A1E24';
-    const text = '#E8E8E8';
-    const textMuted = '#9CA3AF';
-    const accentTeal = '#00D1C7';
-    const accentCyan = '#2DE2E6';
-    const accentLime = '#C7F464';
-    const accentAmber = '#F5A623';
-    const accentPink = '#FF008C';
+    // Colors
+    const aqua = '#14D8D4';
+    const pink = '#FF008C';
+    const yellow = '#FFE600';
+    const charcoal = '#1F1F1F';
+    const bg = '#F7F7F7';
+    const textMuted = '#666666';
 
     // Background
     doc.fillColor(bg);
     doc.rect(0, 0, doc.page.width, doc.page.height);
     doc.fill();
 
-    // Header band
-    doc.fillColor(surface);
-    doc.rect(0, 0, doc.page.width, 120);
+    // Header
+    doc.fillColor('#FFFFFF');
+    doc.rect(0, 0, doc.page.width, 50);
     doc.fill();
 
     // Logo
-    doc.fillColor(accentTeal);
-    doc.fontSize(28);
-    doc.font('Helvetica-Bold');
-    doc.text('PrintScore™', 50, 40);
-
-    // Score label
-    doc.fillColor(textMuted);
-    doc.fontSize(12);
-    doc.text('Print Compatibility Score', 50, 75);
-
-    // Large Score
-    const tierColor = result.tier_color || accentTeal;
-    doc.fillColor(tierColor);
-    doc.fontSize(72);
-    doc.font('Helvetica-Bold');
-    doc.text(`${result.total_score}`, 50, 150);
-
-    doc.fillColor(textMuted);
+    doc.fillColor(aqua);
     doc.fontSize(24);
-    doc.text('/ 100', 140, 175);
+    doc.font('Helvetica-Bold');
+    doc.text('PrintScore™', 20, 18);
+
+    // Score
+    const tierColor = result.tier_color || aqua;
+    doc.fillColor(tierColor);
+    doc.fontSize(56);
+    doc.text(`${result.total_score}`, 20, 75);
+
+    doc.fillColor(textMuted);
+    doc.fontSize(22);
+    doc.text('/ 100', 75, 95);
 
     // Tier badge
     doc.fillColor(tierColor);
-    doc.roundedRect(50, 240, 180, 45, 22);
+    doc.roundedRect(20, 130, 100, 28, 6);
     doc.fill();
 
-    doc.fillColor(bg);
-    doc.fontSize(18);
-    doc.font('Helvetica-Bold');
-    doc.text(result.tier, 50, 255, { width: 180, align: 'center' });
-
-    // Summary section
-    let yPos = 310;
-
-    doc.fillColor(accentTeal);
+    const textColor = (tierColor === '#1F1F1F' || tierColor === '#FFE600') ? '#FFFFFF' : '#1F1F1F';
+    doc.fillColor(textColor);
     doc.fontSize(14);
-    doc.font('Helvetica-Bold');
-    doc.text('Summary', 50, yPos);
+    doc.text(result.tier, 70, 140, { align: 'center', width: 100 });
 
-    doc.fillColor(text);
+    // Summary
+    doc.fillColor(aqua);
     doc.fontSize(12);
+    doc.font('Helvetica-Bold');
+    doc.text('Summary', 20, 175);
+
+    doc.fillColor(charcoal);
+    doc.fontSize(11);
     doc.font('Helvetica');
-    doc.text(result.summary, 50, yPos + 22, { width: doc.page.width - 100 });
+    doc.text(result.summary, 20, 192, { width: 480 });
 
-    yPos = 400;
-
-    // Issue sections with colored borders
-    const sections = [
-      { title: 'Resolution', content: result.issues.resolution, color: accentTeal, icon: '📏' },
-      { title: 'Color Mode', content: result.issues.color, color: accentPink, icon: '🎨' },
-      { title: 'Layout', content: result.issues.layout, color: accentAmber, icon: '✂️' },
-      { title: 'Format', content: result.issues.format, color: '#6B7280', icon: '📦' },
-    ];
-
-    sections.forEach((section, index) => {
-      const col = index % 2;
-      const row = Math.floor(index / 2);
-      const x = 50 + (col * 255);
-      const y = yPos + (row * 85);
-
-      // Card background
-      doc.fillColor(surface);
-      doc.roundedRect(x, y, 240, 75, 8);
-      doc.fill();
-
-      // Left border accent
-      doc.fillColor(section.color);
-      doc.rect(x, y, 4, 75);
-      doc.fill();
-
-      // Title
-      doc.fillColor(text);
+    // AI Insights
+    let yPos = 240;
+    
+    if (result.sharpness || result.compressionArtifacts || result.colorProfile) {
+      doc.fillColor(aqua);
       doc.fontSize(12);
       doc.font('Helvetica-Bold');
-      doc.text(`${section.icon} ${section.title}`, x + 14, y + 12);
+      doc.text('AI Quality Analysis', 20, yPos);
 
-      // Content
-      doc.fillColor(textMuted);
-      doc.fontSize(10);
+      yPos += 18;
+      doc.fillColor('#FFFFFF');
+      doc.roundedRect(20, yPos, 480, 40, 6);
+      doc.fill();
+
+      doc.fillColor(charcoal);
+      doc.fontSize(9);
       doc.font('Helvetica');
-      doc.text(section.content, x + 14, y + 32, { width: 215, height: 35 });
+      
+      if (result.sharpness) {
+        doc.text(`Sharpness: ${result.sharpness}`, 30, yPos + 10);
+      }
+      if (result.compressionArtifacts) {
+        doc.text(`Artifacts: ${result.compressionArtifacts}`, 30, yPos + 22);
+      }
+      if (result.colorProfile) {
+        doc.text(`Color: ${result.colorProfile}`, 250, yPos + 10);
+      }
+
+      yPos += 50;
+    }
+
+    // Issue sections
+    const issues = [
+      { title: 'Resolution', content: result.issues.resolution },
+      { title: 'Color Mode', content: result.issues.color },
+      { title: 'Layout', content: result.issues.layout },
+      { title: 'Format', content: result.issues.format }
+    ];
+
+    issues.forEach((issue) => {
+      doc.fillColor('#FFFFFF');
+      doc.roundedRect(20, yPos, 480, 32, 6);
+      doc.fill();
+
+      doc.fillColor(charcoal);
+      doc.fontSize(10);
+      doc.font('Helvetica-Bold');
+      doc.text(issue.title, 30, yPos + 8);
+
+      doc.fillColor(textMuted);
+      doc.font('Helvetica');
+      doc.fontSize(9);
+      doc.text(issue.content, 30, yPos + 20, { width: 450 });
+
+      yPos += 40;
     });
 
-    // Print size safe range
-    yPos = 580;
-    doc.fillColor(surface);
-    doc.roundedRect(50, yPos, doc.page.width - 100, 40, 8);
+    // Print size
+    yPos += 10;
+    doc.fillColor('#FFFFFF');
+    doc.roundedRect(20, yPos, 480, 24, 6);
     doc.fill();
 
-    doc.fillColor(accentLime);
-    doc.fontSize(11);
+    doc.fillColor(aqua);
+    doc.fontSize(10);
     doc.font('Helvetica-Bold');
-    doc.text('Print Size Safe Range:', 65, yPos + 12);
+    doc.text(`Print Size Safe Range: ${result.max_print_width_in?.toFixed(1) || '?'} × ${result.max_print_height_in?.toFixed(1) || '?'} inches at 300 DPI`, 260, yPos + 8, { align: 'center' });
 
-    doc.fillColor(text);
-    doc.font('Helvetica');
-    doc.text(`${result.max_print_width_in?.toFixed(1) || '?'} × ${result.max_print_height_in?.toFixed(1) || '?'} inches at 300 DPI`, 200, yPos + 12);
+    // Recommendations
+    if (result.recommendations && result.recommendations.length > 0) {
+      yPos += 40;
+      doc.fillColor(aqua);
+      doc.fontSize(12);
+      doc.font('Helvetica-Bold');
+      doc.text('Recommendations', 20, yPos);
+
+      yPos += 15;
+      result.recommendations.forEach((rec: string) => {
+        doc.fillColor(charcoal);
+        doc.fontSize(9);
+        doc.font('Helvetica');
+        doc.text(`→ ${rec}`, 25, yPos, { width: 470 });
+        yPos += 14;
+      });
+    }
 
     // Footer
-    const footerY = doc.page.height - 100;
-    doc.fillColor(accentTeal);
-    doc.rect(0, footerY, doc.page.width, 100);
+    const footerY = 720;
+    doc.fillColor(aqua);
+    doc.rect(0, footerY, doc.page.width, 50);
     doc.fill();
 
-    doc.fillColor(bg);
-    doc.fontSize(14);
+    doc.fillColor(charcoal);
+    doc.fontSize(12);
     doc.font('Helvetica-Bold');
-    doc.text('Scanned with PrintScore™', 50, footerY + 30);
+    doc.text('Scanned with PrintScore™', 20, footerY + 15);
 
-    doc.fontSize(11);
+    doc.fontSize(10);
     doc.font('Helvetica');
-    doc.text('Files are analyzed and automatically deleted.', 50, footerY + 52);
+    doc.text('Powered by GPT-4o Vision. Files analyzed and immediately deleted.', 20, footerY + 32);
 
     // Finalize PDF
     doc.end();
