@@ -63,7 +63,17 @@ export async function POST(request: NextRequest) {
     let aiAnalysis: AIAnalysis;
 
     if (file.type.startsWith('image/')) {
-      aiAnalysis = await analyzeWithOpenAI(buffer, file.type, width_px, height_px);
+      try {
+        aiAnalysis = await analyzeWithOpenAI(buffer, file.type, width_px, height_px);
+      } catch (error) {
+        console.error('OpenAI analysis failed:', error);
+        // Return the error to the client for debugging
+        return NextResponse.json({ 
+          error: 'AI analysis failed', 
+          details: error instanceof Error ? error.message : 'Unknown error',
+          fallback: true
+        }, { status: 500 });
+      }
     } else {
       // PDF - use basic analysis
       aiAnalysis = getBasicAnalysis(width_px, height_px, format_type, file_size);
@@ -116,6 +126,11 @@ async function analyzeWithOpenAI(
   width: number,
   height: number
 ): Promise<AIAnalysis> {
+  // Check for API key
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error('OPENAI_API_KEY environment variable is not set');
+  }
+
   const base64Image = imageBuffer.toString('base64');
   const dataUrl = `data:${mimeType};base64,${base64Image}`;
 
@@ -162,40 +177,34 @@ Respond in this EXACT JSON format (no markdown, just pure JSON):
   "recommendations": ["<specific actionable recommendation 1>", "<recommendation 2>"]
 }`;
 
-  try {
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o',
-      messages: [
-        {
-          role: 'user',
-          content: [
-            { type: 'text', text: prompt },
-            {
-              type: 'image_url',
-              image_url: { url: dataUrl, detail: 'high' },
-            },
-          ],
-        },
-      ],
-      max_tokens: 1000,
-      temperature: 0.3,
-    });
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [
+      {
+        role: 'user',
+        content: [
+          { type: 'text', text: prompt },
+          {
+            type: 'image_url',
+            image_url: { url: dataUrl, detail: 'high' },
+          },
+        ],
+      },
+    ],
+    max_tokens: 1000,
+    temperature: 0.3,
+  });
 
-    const content = response.choices[0]?.message?.content || '';
-    
-    // Parse JSON response
-    const jsonMatch = content.match(/\{[\s\S]*\}/);
-    if (jsonMatch) {
-      return JSON.parse(jsonMatch[0]) as AIAnalysis;
-    }
-    
-    // Fallback to basic analysis if parsing fails
-    console.error('Failed to parse OpenAI response:', content);
-    return getBasicAnalysis(width, height, 'unknown', 0);
-  } catch (error) {
-    console.error('OpenAI API error:', error);
-    return getBasicAnalysis(width, height, 'unknown', 0);
+  const content = response.choices[0]?.message?.content || '';
+  console.log('OpenAI response:', content.substring(0, 200));
+  
+  // Parse JSON response
+  const jsonMatch = content.match(/\{[\s\S]*\}/);
+  if (jsonMatch) {
+    return JSON.parse(jsonMatch[0]) as AIAnalysis;
   }
+  
+  throw new Error('Failed to parse OpenAI response: ' + content.substring(0, 100));
 }
 
 function getBasicAnalysis(width: number, height: number, format: string, fileSize: number): AIAnalysis {
